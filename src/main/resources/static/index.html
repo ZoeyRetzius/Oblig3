@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Oblig3</title>
+  <script src="main.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Bestilling av kinobilletter</h1>
+
+      <form id ="form">
+        <div class="mb-3">
+          <label for="filmNavn" class="form-label">Velg film</label>
+          <select class="form-select" id="filmNavn">
+            <option value="velgFilm">Velg film her</option>
+            <option value="Thelma & Louise">Thelma & Louise</option>
+            <option value="Before Sunrise">Before sunrise</option>
+            <option value="Whiplash">Whiplash</option>
+          </select>
+          <span id="feilFilmNavn" class="text-danger"></span>
+        </div>
+
+        <div class ="form-group">
+          <label for="antallBilletter" class="form-labell">Antall billetter</label>
+          <input type="number" class="form-control" id="antallBilletter">
+          <span id="feilAntallBilletter" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="fornavn" class="form-label">Fornavn</label>
+          <input type="text" class="form-control" id="fornavn">
+          <span id="feilFornavn" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="etternavn" class="form-label">Etternavn</label>
+          <input type="text" class="form-control" id="etternavn">
+          <span id="feilEtternavn" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="epost" class="form-label">Epost</label>
+          <input type="text" class="form-control" id="epost">
+          <span id="feilEpost" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="tlfNr" class="form-label">Telefonnummer</label>
+          <input type="text" class="form-control" id="tlfNr">
+          <span id="feilTelefonNr" class="text-danger"></span>
+        </div>
+
+
+        <button class="btn btn-primary" id= "kjopBillett" onclick="inputValidering();kjopBillett();">Kjøp billett</button>
+      </form>
+
+      <h2 class="mt-5">Alle billetter</h2>
+      <div id="output"></div>
+
+      <button class="btn btn-danger mt-3" id="slett" onclick="slettBillett()">Slett alle billettene</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
