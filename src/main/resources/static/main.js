@@ -1,11 +1,11 @@
-// funksjon for å tømme alle inputfeltene
+
    const blankt = () => {
     $('#filmNavn').val('');
     $('#antallBilletter').val('');
     $('#fornavn').val('');
     $('#etternavn').val('');
-    $('#epost').val('');
     $('#tlfNr').val('');
+    $('#epost').val('');
    };
 
 
@@ -72,69 +72,63 @@ function inputValidering() {
     return filmVal() && antallVal() && fornavnVal() && etternavnVal() && telefonVal() && epostVal();
 }
 
+$(function() {
+    hentBilletter();
+});
 
-//funksjon for å kjøpe billetter
         function kjopBillett() {
             if (inputValidering()) {
-                //henter verdier fra inputfeltene
-                const film = $("#filmNavn").val();
-                const antall = $("#antallBilletter").val();
-                const fornavn = $("#fornavn").val();
-                const etternavn = $("#etternavn").val();
-                const epost = $("#epost").val();
-                const telefon = $("#tlfNr").val();
+                    const film = $("#filmNavn").val();
+                    const antall = $("#antallBilletter").val();
+                    const fornavn = $("#fornavn").val();
+                    const etternavn = $("#etternavn").val();
+                    const epost = $("#epost").val();
+                    const telefon = $("#tlfNr").val();
 
 
-                //oppretter et objekt med billettinformasjon
-                const billett = {
-                    film: film,
-                    antall: antall,
-                    fornavn: fornavn,
-                    etternavn: etternavn,
-                    epost : epost,
-                    telefon: telefon,
-                };
+                    const billett = {
+                        film: film,
+                        antall: antall,
+                        fornavn: fornavn,
+                        etternavn: etternavn,
+                        epost : epost,
+                        telefon: telefon,
+                    };
 
-                //sender billettinformasjonen til serveren for lagring
-                $.post("/lagre", billett, function() {
-                    //henter og viser billetter etter lagring
-                    hentBilletter();
-                    blankt();
+
+                    $.post("/lagre", billett, function() {
+                        hentBilletter();
+                        blankt();
+                    });
+                }
+            }
+
+            function hentBilletter() {
+                $.get("/hentBilletter", function (data) {
+                    formaterData(data);
                 });
             }
-        }
 
-        //funksjon for å hente billetter fra serveren
-        function hentBilletter() {
-            $.get("/hentBilletter", function (data) {
-                //formaterer og viser billetter på nettsiden
-                formaterData(data);
-            });
-        }
+            function formaterData(billetter){
+                let ut = "<table class='table'><thead><tr><th>Film</th><th>Antall Billetter</th><th>Fornavn</th><th>Etternavn</th><th>Epost</th><th>Telefonnummer</th></tr></thead><tbody>";
 
-        //funksjon for å formatere billettdatalisten til HTML-tabell
-    function formaterData(billetter){
-    let ut = "<table class='table'><thead><tr><th>Film</th><th>Antall Billetter</th><th>Fornavn</th><th>Etternavn</th><th>Epost</th><th>Telefonnummer</th></tr></thead><tbody>";
+                for (const b of billetter) {
+                     ut += "<tr><td>" + b.film + "</td><td>" + b.antall + "</td><td>" +
+                    b.fornavn + "</td><td>" + b.etternavn + "</td><td>" + b.epost + "</td><td>" + b.telefon + "</td></tr>";
+             }
+            ut += "</table>";
+            $("#output").html(ut);
+         }
 
-    //går gjennom hver billett og legger til i tabellen
-    for (const b of billetter) {
-        ut += "<tr><td>" + b.film + "</td><td>" + b.antall + "</td><td>" +
-            b.fornavn + "</td><td>" + b.etternavn + "</td><td>" + b.epost + "</td><td>" + b.telefon + "</td></tr>";
-        }
-        ut += "</table>";
-        //setter den formaterte tabellen til HTML-elementet med ID "output"
-        $("#output").html(ut);
-    }
-
-    //funksjon for å slette alle billetter
-        function slettBillett() {
-            //sender en forespørsel til serveren for å slette alle billetter
-            $.get("/slett", function() {
-                //henter og viser billetter etter sletting
-                hentBilletter()
-        });
-        //tømmer innholdet i HTML-elementet med ID "output"
-        $("#output").html("");
-        //tømmer alle inputfeltene
-        blankt();
-    }
+            //funksjon for å slette alle billetter
+            function slettBillett() {
+                //sender en forespørsel til serveren for å slette alle billetter
+                $.get("/slett", function() {
+                    //henter og viser billetter etter sletting
+                    hentBilletter()
+                });
+                //tømmer innholdet i HTML-elementet med ID "output"
+                $("#output").html("");
+                //tømmer alle inputfeltene
+                blankt();
+            }

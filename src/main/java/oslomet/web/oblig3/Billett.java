@@ -6,19 +6,20 @@ public class Billett {
     private String antall;
     private String fornavn;
     private String etternavn;
-    private String epost;
     private String telefon;
+    private String epost;
     public Billett(){
 
     }
-    public Billett(int id, String film, String antall, String fornavn, String etternavn, String epost, String telefon) {
+    public Billett(int id, String film, String antall, String fornavn, String etternavn, String telefon, String epost) {
         this.id = id;
         this.film = film;
         this.antall = antall;
         this.fornavn = fornavn;
         this.etternavn = etternavn;
-        this.epost = epost;
         this.telefon = telefon;
+        this.epost = epost;
+
 
     }
 
@@ -73,7 +74,7 @@ public class Billett {
         return telefon;
     }
 
-    public void setTelefon(String tlfNr) {
+    public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
 

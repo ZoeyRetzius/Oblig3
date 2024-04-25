@@ -21,7 +21,6 @@ public class BillettRepo {
         List<Billett> hentBilletter = db.query(sql, new BeanPropertyRowMapper<>(Billett.class));
         return hentBilletter;
     }
-
     public void slettBillett() {
         String sql = "DELETE FROM BILLETT";
         db.update(sql);
