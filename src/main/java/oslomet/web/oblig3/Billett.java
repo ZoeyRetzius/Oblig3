@@ -2,27 +2,24 @@ package oslomet.web.oblig3;
 
 public class Billett {
     private int id;
-    private String filmNavn;
-    private String antallBilletter;
+    private String film;
+    private String antall;
     private String fornavn;
     private String etternavn;
     private String epost;
-    private String tlfNr;
+    private String telefon;
+    public Billett(){
 
-
-
-    public Billett(int id, String fornavn, String etternavn, String epost, String tlfNr, String antallBilletter, String filmNavn) {
+    }
+    public Billett(int id, String film, String antall, String fornavn, String etternavn, String epost, String telefon) {
         this.id = id;
-        this.filmNavn = filmNavn;
-        this.antallBilletter = antallBilletter;
+        this.film = film;
+        this.antall = antall;
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.epost = epost;
-        this.tlfNr = tlfNr;
+        this.telefon = telefon;
 
-    }
-
-    public Billett() {
     }
 
     public int getId() {
@@ -32,19 +29,19 @@ public class Billett {
     public void setId(int id) {
         this.id = id;
     }
-    public String getFilmNavn() {
-        return filmNavn;
+    public String getFilm() {
+        return film;
     }
 
-    public void setFilmNavn(String filmNavn) {
-        this.filmNavn = filmNavn;
+    public void setFilm(String film) {
+        this.film = film;
     }
-    public String getAntallBilletter() {
-        return antallBilletter;
+    public String getAntall() {
+        return antall;
     }
 
-    public void setAntallBilletter(String antallBilletter) {
-        this.antallBilletter = antallBilletter;
+    public void setAntall(String antall) {
+        this.antall = antall;
     }
 
 
@@ -72,12 +69,12 @@ public class Billett {
         this.epost = epost;
     }
 
-    public String getTlfNr() {
-        return tlfNr;
+    public String getTelefon() {
+        return telefon;
     }
 
-    public void setTlfNr(String tlfNr) {
-        this.tlfNr = tlfNr;
+    public void setTelefon(String tlfNr) {
+        this.telefon = telefon;
     }
 
 }

@@ -1,11 +1,14 @@
 package oslomet.web.oblig3;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 public class BillettController {
@@ -14,7 +17,7 @@ public class BillettController {
     private BillettRepo rep;
 
     @PostMapping("/lagre")
-    public void kjopBillett (Billett innBillett) {
+    public void lagreBillett (Billett innBillett) {
         rep.lagreBillett(innBillett);
     }
 
@@ -24,8 +27,7 @@ public class BillettController {
     }
 
     @GetMapping ("/slett")
-    public void slettBillett() {
+    public void slett() {
         rep.slettBillett();
     }
-
 }

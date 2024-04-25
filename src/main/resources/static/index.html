@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
 <head>
   <meta charset="UTF-8">
   <title>Oblig3</title>
-  <script src="main.js"></script>
+  <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <div class="col-md-6 col-md-offset-3">
       <h1>Bestilling av kinobilletter</h1>
 
-      <form id ="form">
+      <form class ="form" id="ticketForm" onsubmit="return false">
         <div class="mb-3">
           <label for="filmNavn" class="form-label">Velg film</label>
           <select class="form-select" id="filmNavn">
@@ -58,7 +58,7 @@
         </div>
 
 
-        <button class="btn btn-primary" id= "kjopBillett" onclick="inputValidering();kjopBillett();">Kjøp billett</button>
+        <button class="btn btn-primary" id= "kjopBillett" type="submit">Kjøp billett</button>
       </form>
 
       <h2 class="mt-5">Alle billetter</h2>
@@ -68,5 +68,21 @@
     </div>
   </div>
 </div>
+
+<script type = "application/javascript">
+  $(document).ready(function () {
+    $('#ticketForm').on('submit', function (e) {
+      e.preventDefault();
+      kjopBillett();
+    });
+
+    $('slett').on('click', function (e) {
+      slettBillett();
+      e.preventDefault();
+    });
+  });
+</script>
+
+<script type = "application/javascript" src="main.js"></script>
 </body>
 </html>
